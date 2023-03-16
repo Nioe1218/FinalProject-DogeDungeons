@@ -1,8 +1,8 @@
 extends FiniteStateMachine
 
 
-var health = 5
-func _init()->void:
+
+func _init()->void:#bat states
 	_add_state("chase")
 	_add_state("hurt")
 	_add_state("dead")

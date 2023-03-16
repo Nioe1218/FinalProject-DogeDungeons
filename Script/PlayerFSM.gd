@@ -1,7 +1,7 @@
 extends FiniteStateMachine
 
 var health = 10
-func _init()->void:
+func _init()->void:#player states
 	_add_state("idle")
 	_add_state("move")
 	_add_state("hurt")
@@ -17,10 +17,10 @@ func _state_logic(_delta:float)->void:
 func _get_transition()-> int:
 	match state:
 		states.idle:
-			if parent.velocity.length()>10:
+			if parent.velocity.length()>10:#when speed >10 start move state
 				return states.move
 		states.move:
-			if parent.velocity.length()<10:
+			if parent.velocity.length()<10:#when speed<10 back to idle state
 				return states.idle
 		states.hurt:
 			if not animation_player.is_playing():
@@ -28,7 +28,7 @@ func _get_transition()-> int:
 	return -1
 			
 				
-func _enter_state(_previous_state:int,new_state:int)->void:
+func _enter_state(_previous_state:int,new_state:int)->void:#player animation
 	match new_state:
 		states.idle:
 			animation_player.play("idle")

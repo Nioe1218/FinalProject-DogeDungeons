@@ -1,6 +1,6 @@
 extends Enemy
 
-
+#batenemy 
 onready var hitbox:Area2D= get_node("Hitbox")
 
 func _process(_delta:float)-> void:

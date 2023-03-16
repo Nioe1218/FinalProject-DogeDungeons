@@ -3,7 +3,7 @@ extends Character
 onready var bone:Node2D = get_node("Bone")
 onready var bone_hitbox: Area2D = get_node("Bone/Node2D/Sprite/Hitbox")
 onready var bone_animation_player:AnimationPlayer = bone.get_node("BoneAnimationPlayer")
-func _process(_delta:float)-> void:
+func _process(_delta:float)-> void:# player will face to the mouse position
 	var mouse_direction:Vector2 = (get_global_mouse_position()-global_position).normalized()
 	
 	if mouse_direction.x<0 and animated_sprite.flip_h:
@@ -11,14 +11,14 @@ func _process(_delta:float)-> void:
 	elif mouse_direction.x>0 and not animated_sprite.flip_h:
 		animated_sprite.flip_h = true
 		
-	bone.rotation = mouse_direction.angle()
-	bone_hitbox.knockback_direction = mouse_direction
-	if bone.scale.y ==1 and mouse_direction.x>0:
+	bone.rotation = mouse_direction.angle()#bone rotation follow the mouse
+	bone_hitbox.knockback_direction = mouse_direction#bone attack knockback enemy
+	if bone.scale.y ==1 and mouse_direction.x>0:#make the bone face to mouse
 		bone.scale.y = -1
 	elif bone.scale.y ==-1 and mouse_direction.x <0:
 		bone.scale.y =1
 	
-func get_input()-> void:
+func get_input()-> void:#player input
 	mov_direction=Vector2.ZERO
 	if Input.is_action_pressed("ui_down"):
 		mov_direction += Vector2.DOWN

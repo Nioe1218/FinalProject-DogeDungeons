@@ -9,9 +9,10 @@ onready var collision_shape:CollisionShape2D = get_child(0)
 func _init():
 	var __ = connect("body_entered",self,"_on_body_entered")
 	
-func _ready():
+func _ready():#make sure the hitbox has a collision shape
 	assert(collision_shape!= null)
 	
+	#when a body enters the area, call the function take damage of the body withe the variables
 func _on_body_entered(body:PhysicsBody2D):
 	body.take_damage(damage,knockback_direction,knockback_force)
 
