@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const MIN_health:int =1
+const MIN_health:int = 1
 
 var max_hp:int =5
 
@@ -20,3 +20,4 @@ func _update_health_bar(new_value:int):#health bar
 func _on_Player_hp_changed(new_hp:int)->void:
 	var new_health: int = int((100-MIN_health)*float(new_hp)/max_hp)+MIN_health
 	_update_health_bar(new_health)
+

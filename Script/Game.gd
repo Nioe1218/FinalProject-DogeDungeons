@@ -2,6 +2,8 @@ extends Node
 
 
 func _init():
+	randomize()
+	
 	var screen_size:Vector2= OS.get_screen_size()
 	var window_size: Vector2 =OS.get_window_size()
 	

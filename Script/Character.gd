@@ -26,14 +26,20 @@ func move()->void:#move the character
 
 #all the characters in this class will take damage
 func take_damage(dam:int,dir:Vector2,force:int):
+	
 	self.hp -= dam #hp decrease
+	
+	if name == "Player":
+		if hp==0:
+			get_tree().reload_current_scene()
+	
 	if hp >0:
 		state_machine.set_state(state_machine.states.hurt)
 		velocity += dir*force
 	else:
 		state_machine.set_state(state_machine.states.dead)
 		velocity += dir*force*2
-		
+			
 func set_hp(new_hp:int)->void:
 	hp = new_hp
 	emit_signal("hp_changed",new_hp)

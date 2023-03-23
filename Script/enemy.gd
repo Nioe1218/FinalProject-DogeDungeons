@@ -1,8 +1,8 @@
 extends Character
 class_name Enemy
 
-onready var player: KinematicBody2D =  $"../Player"
-onready var navigation : Navigation2D =  $"../Navigation2D"
+onready var player: KinematicBody2D =  get_tree().current_scene.get_node("Player")
+onready var navigation : Navigation2D = get_tree().current_scene.get_node("Rooms") 
 onready var path_timer: Timer = get_node("PatchTimer")
 
 var path: PoolVector2Array
@@ -26,8 +26,10 @@ func chase()->void:#enemy chasing player
 
 func _on_PatchTimer_timeout()-> void:#update the path of the navigation
 	if is_instance_valid(player):
-		path = navigation.get_simple_path(global_position,player.position)
+		_get_path_to_player()
 	else:
 		path_timer.stop()
 		path = []
 		mov_direction = Vector2.ZERO
+func _get_path_to_player() -> void:
+	path = navigation.get_simple_path(global_position, player.position)

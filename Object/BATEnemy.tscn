@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Script/Hitbox.gd" type="Script" id=1]
 [ext_resource path="res://Import/Sprites/bat.png" type="Texture" id=2]
-[ext_resource path="res://Script/BatFSM.gd" type="Script" id=3]
-[ext_resource path="res://Import/ninja-adventure/fx/1.png" type="Texture" id=4]
+[ext_resource path="res://Import/ninja-adventure/fx/1.png" type="Texture" id=3]
+[ext_resource path="res://Script/BatFSM.gd" type="Script" id=4]
 [ext_resource path="res://Object/Bat enemy.gd" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=10]
@@ -13,22 +13,22 @@ region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 96, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=1]
@@ -256,26 +256,28 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 21.0238
+radius = 12.0416
 
 [sub_resource type="CircleShape2D" id=16]
-radius = 23.0217
+radius = 15.0
 
 [node name="Bat" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 5 )
+max_speed = 50
+accerelation = 20
 
 [node name="PatchTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
 [node name="FiniteStateMachine" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 1.43051e-06, -1.90735e-06 )
-scale = Vector2( 2.25, 2.125 )
+position = Vector2( 0.5, 2.38419e-07 )
+scale = Vector2( 1.5625, 1.375 )
 frames = SubResource( 4 )
 animation = "idle"
 

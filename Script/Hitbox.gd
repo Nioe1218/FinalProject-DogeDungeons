@@ -14,5 +14,10 @@ func _ready():#make sure the hitbox has a collision shape
 	
 	#when a body enters the area, call the function take damage of the body withe the variables
 func _on_body_entered(body:PhysicsBody2D):
-	body.take_damage(damage,knockback_direction,knockback_force)
+	_collide(body)
 
+func _collide(body: KinematicBody2D) -> void:
+	if body == null or not body.has_method("take_damage"):
+		queue_free()
+	else:
+		body.take_damage(damage, knockback_direction, knockback_force)

@@ -31,3 +31,8 @@ func get_input()-> void:#player input
 	if Input.is_action_just_pressed("ui_attack") and not bone_animation_player.is_playing():
 		bone_animation_player.play("attack")
 		
+func switch_camrea()->void:
+	var main_scene_camera: Camera2D= get_parent().get_node("Camera2D")
+	main_scene_camera.position = position
+	main_scene_camera.current = true
+	get_node("Camera2D").current = false
