@@ -1,9 +1,11 @@
 extends Navigation2D
 
 
-const SPAWN_ROOMS: Array =[preload("res://Scene/SpawnRoom1.tscn")]
+const SPAWN_ROOMS: Array =[preload("res://Scene/SpawnRoom1.tscn"),preload("res://Scene/SpawnRoom1.tscn")]
 
-const INTERMEDIATE_ROOMS: Array=[preload("res://Scene/Room0.tscn"),preload("res://Scene/Room1.tscn"),preload("res://Scene/Room3.tscn")]
+const INTERMEDIATE_ROOMS: Array=[preload("res://Scene/Room0.tscn"),preload("res://Scene/Room1.tscn"),preload("res://Scene/Room4.tscn")]
+
+const BIG_ROOMS :Array = [preload("res://Scene/BigRoom1.tscn"),preload("res://Scene/Bigroom2.tscn")]
 
 const END_ROOM: Array=[preload("res://Scene/EndRoom0.tscn")]
 
@@ -19,11 +21,14 @@ export (int)var num_levels:int =5
 onready var player: KinematicBody2D =get_parent().get_node("Player")
 
 func _ready():
+	Savedata.num_floor += 1
+	if Savedata.num_floor >1:
+		num_levels +1
 	_spawn_rooms()
 	
 func _spawn_rooms():
 	var previous_room:Node2D
-	
+	var bigroom_spawned:bool = false
 	for i in num_levels:
 		var room:Node2D
 		if i == 0:
@@ -33,7 +38,11 @@ func _spawn_rooms():
 			if i ==num_levels -1:
 				room = END_ROOM[randi()%END_ROOM.size()].instance()
 			else:
-				room = INTERMEDIATE_ROOMS[randi()%INTERMEDIATE_ROOMS.size()].instance()
+				if (randi() % 3 == 0 and not bigroom_spawned) or (i == num_levels - 2 and not bigroom_spawned):
+						room = BIG_ROOMS[randi() % BIG_ROOMS.size()].instance()
+						bigroom_spawned = true
+				else:
+					room = INTERMEDIATE_ROOMS[randi()%INTERMEDIATE_ROOMS.size()].instance()
 		
 			var previous_room_tilemap:TileMap = previous_room.get_node("TileMap")
 			var previous_room_door: StaticBody2D = previous_room.get_node("Doors/Door")

@@ -33,8 +33,9 @@ script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 507, 478 )
-hp = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -8, -3 )
+zoom = Vector2( 0.152, 0.187 )
 
 [connection signal="hp_changed" from="Player" to="UI" method="_on_Player_hp_changed"]

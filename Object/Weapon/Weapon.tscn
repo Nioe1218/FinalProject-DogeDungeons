@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Import/White.gdshader" type="Shader" id=1]
+[ext_resource path="res://Import/femur.png" type="Texture" id=2]
+[ext_resource path="res://Object/Weapon/Weapon.gd" type="Script" id=3]
+[ext_resource path="res://Object/Weapon/WeaponHitbox.gd" type="Script" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/active = false
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.67
+initial_velocity_random = 0.3
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = 80.0
+tangential_accel_random = 0.2
+scale = 1.5
+
+[sub_resource type="CapsuleShape2D" id=3]
+height = 36.4124
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 3, -1 )
+rotation = -0.785398
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+material = SubResource( 1 )
+position = Vector2( -22.1613, 38.9957 )
+rotation = 0.143117
+scale = Vector2( 0.467566, 0.627737 )
+texture = ExtResource( 2 )
+
+[node name="ChargeParticles2D" type="Particles2D" parent="Node2D/Sprite"]
+position = Vector2( -1.03687, 0.935654 )
+rotation = 0.670568
+scale = Vector2( 1.8687, 1.9026 )
+emitting = false
+amount = 15
+lifetime = 0.5
+process_material = SubResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="Node2D/Sprite"]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite/Hitbox"]
+position = Vector2( -1.71889, 1.69443 )
+rotation = 0.764454
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="area_entered" from="Node2D/Sprite/Hitbox" to="Node2D/Sprite/Hitbox" method="_on_Hitbox_area_entered"]

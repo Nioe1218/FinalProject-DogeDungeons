@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Script/Room.gd" type="Script" id=1]
 [ext_resource path="res://Object/map.tres" type="TileSet" id=2]
 [ext_resource path="res://Object/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Object/Spikes.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scene/HealthPotion.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 26.5, 16.5 )
@@ -36,11 +38,73 @@ bake_navigation = true
 format = 1
 tile_data = PoolIntArray( 327705, 40, 0, 327707, 40, 0, 458761, 49, 0, 983054, 40, 0, 1048590, 42, 0, 1441798, 49, 0, 1441811, 46, 0, 1507346, 47, 0, 1507347, 46, 0, 1507348, 47, 0, 1572880, 49, 0, 1572881, 49, 0, 1572882, 49, 0, 1572883, 49, 0, 1572884, 49, 0 )
 
+[node name="Trap" type="Node2D" parent="."]
+
+[node name="Spikes" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 242, 246 )
+
+[node name="Spikes8" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 221, 268 )
+
+[node name="Spikes5" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 242, 268 )
+
+[node name="Spikes6" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 200, 224 )
+
+[node name="Spikes7" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 200, 268 )
+
+[node name="Spikes11" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 163, 77 )
+
+[node name="Spikes12" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 163, 99 )
+
+[node name="Spikes13" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 163, 121 )
+
+[node name="Spikes14" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 163, 143 )
+
+[node name="Spikes15" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 142, 143 )
+
+[node name="Spikes16" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 121, 143 )
+
+[node name="Spikes17" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 101, 143 )
+
+[node name="Spikes18" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 80, 143 )
+
+[node name="Spikes19" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 59, 143 )
+
+[node name="Spikes4" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 242, 224 )
+
+[node name="Spikes3" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 200, 246 )
+
+[node name="Spikes2" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 200, 202 )
+
+[node name="Spikes9" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 221, 202 )
+
+[node name="Spikes10" parent="Trap" instance=ExtResource( 4 )]
+position = Vector2( 242, 202 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 162, 468 )
+
+[node name="HealthPotion" parent="Position2D" instance=ExtResource( 5 )]
+position = Vector2( -74, -379 )
+
 [node name="Entrance" type="Node2D" parent="."]
 position = Vector2( 1, 1 )
-
-[node name="Position2D" type="Position2D" parent="Entrance"]
-position = Vector2( 161, 467 )
 
 [node name="Position2D2" type="Position2D" parent="Entrance"]
 position = Vector2( 336, 474 )

@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "Hitbox",
 "language": "GDScript",
 "path": "res://Script/Hitbox.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Object/Weapon/Weapon.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
 "Enemy": "",
 "FiniteStateMachine": "",
-"Hitbox": ""
+"Hitbox": "",
+"Weapon": ""
 }
 
 [application]
@@ -42,9 +48,10 @@ config/name="Final Project"
 run/main_scene="res://Scene/Level1.tscn"
 config/icon="res://icon.png"
 
-[display]
+[autoload]
 
-mouse_cursor/custom_image="res://Import/western-fps-2d/hud/cursor.png"
+Changescence="*res://Scene/changescence.tscn"
+Savedata="*res://Savedata.gd"
 
 [gui]
 
@@ -83,6 +90,16 @@ ui_down={
 ui_attack={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+ui_previous_weapon={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+ui_next_weapon={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

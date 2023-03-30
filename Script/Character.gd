@@ -1,11 +1,13 @@
 extends KinematicBody2D
 class_name Character
 
-export(int) var hp: int = 2 setget set_hp  #store the health for the characters
+export(int) var hp: int = 2 setget set_hp
+export(int) var max_hp :int =10
+ #store the health for the characters
 signal hp_changed(new_hp)
 export(int) var max_speed: int = 200 #speed and accerlation for the characters
 export(int) var accerelation:int = 50
-
+export(bool) var flying: bool = false
 onready var state_machine:Node = get_node("FiniteStateMachine")
 #change the states when take the damage
 
@@ -30,8 +32,8 @@ func take_damage(dam:int,dir:Vector2,force:int):
 	self.hp -= dam #hp decrease
 	
 	if name == "Player":
-		if hp==0:
-			get_tree().reload_current_scene()
+		Savedata.hp = hp
+	
 	
 	if hp >0:
 		state_machine.set_state(state_machine.states.hurt)
@@ -41,5 +43,5 @@ func take_damage(dam:int,dir:Vector2,force:int):
 		velocity += dir*force*2
 			
 func set_hp(new_hp:int)->void:
-	hp = new_hp
+	hp = clamp(new_hp,0,max_hp)
 	emit_signal("hp_changed",new_hp)
