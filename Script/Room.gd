@@ -25,7 +25,7 @@ func _ready():
 	
 func _on_enemy_killed():
 	num_enemies -=1
-	if num_enemies == 0:
+	if num_enemies == 0:#when all the enemies dead,door will open
 		_open_doors()
 	
 func _open_doors():
@@ -37,7 +37,7 @@ func _close_entrance():
 		tilemap.set_cellv(tilemap.world_to_map(entry_position.position),1)
 		tilemap.set_cellv(tilemap.world_to_map(entry_position.position)+Vector2.DOWN,2)
 		
-func _spawn_enemies():
+func _spawn_enemies(): #random spawn 2 kinds of enemies
 	for enemy_position in enemy_position_container.get_children():
 		var enemy: KinematicBody2D
 		if randi()% 2 ==0:
