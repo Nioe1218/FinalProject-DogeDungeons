@@ -1,6 +1,6 @@
 extends KinematicBody2D
 class_name Character
-
+signal level_changed(new_level)
 export(int) var hp: int = 2 setget set_hp
 export(int) var max_hp :int =10
  #store the health for the characters

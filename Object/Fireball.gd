@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 
 
 
-func _collide(body: KinematicBody2D) -> void:
+func _collide(body: KinematicBody2D) -> void:#fire ball will do the damage and knockback
 	if enemy_exited:
 		if body != null:
 			body.take_damage(damage, knockback_direction, knockback_force)

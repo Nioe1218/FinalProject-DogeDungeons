@@ -52,7 +52,7 @@ func _spawn_enemies():
 		spawn_explosion.position = enemy_position.position 
 		call_deferred("add_child",spawn_explosion)
 
-func _on_Player_Detector_body_entered(_body:KinematicBody2D):
+func _on_Player_Detector_body_entered(_body:KinematicBody2D):#check if there are enemies in the room
 	player_detector.queue_free()
 	if num_enemies>0:
 		_close_entrance()

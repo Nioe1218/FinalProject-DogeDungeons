@@ -1,16 +1,24 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Import/Dog.png" type="Texture" id=1]
-[ext_resource path="res://Menu.gd" type="Script" id=2]
+[ext_resource path="res://Import/Teko-Light.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Import/femur.png" type="Texture" id=3]
 [ext_resource path="res://Import/Teko-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scene/Controls.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=7]
-size = 85
+size = 83
 font_data = ExtResource( 4 )
 
 [sub_resource type="Theme" id=8]
 default_font = SubResource( 7 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=10]
+default_font = SubResource( 9 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -38,7 +46,7 @@ default_font = SubResource( 1 )
 Button/fonts/font = SubResource( 1 )
 
 [node name="Menu" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
@@ -51,10 +59,9 @@ margin_bottom = 40.0
 anchor_left = 0.5
 anchor_right = 25.35
 anchor_bottom = 14.875
-margin_left = -13.5
+margin_left = -14.0
 margin_top = 3.0
-margin_right = -15.35
-margin_bottom = 2.99994
+margin_bottom = -6.10352e-05
 color = Color( 0.121569, 0.109804, 0.109804, 1 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Control"]
@@ -65,20 +72,17 @@ margin_bottom = 248.0
 theme = SubResource( 8 )
 text = "DogeDungeons"
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
-anchor_left = 0.034
-anchor_right = 0.197
-margin_left = 472.64
-margin_top = 306.0
-margin_right = 515.64
-margin_bottom = 370.0
-rect_scale = Vector2( 1.67973, 1.44 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer"]
-margin_left = 24.0
-margin_top = 32.0
-margin_right = 24.0
-margin_bottom = 32.0
+[node name="Label" type="Label" parent="CanvasLayer/Control/Label"]
+margin_left = 58.0
+margin_top = 152.0
+margin_right = 411.0
+margin_bottom = 305.0
+theme = SubResource( 10 )
+text = "Move:WASD
+Attack:Left click
+Strong Attack:hold left click then release
+change weapon: mouse wheel up and down"
+align = 1
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/Control"]
 position = Vector2( 242, 388 )
@@ -90,40 +94,22 @@ position = Vector2( 854, 412 )
 scale = Vector2( 3.70833, 4.17708 )
 frames = SubResource( 6 )
 
-[node name="Button3" type="Button" parent="CanvasLayer/Control"]
-margin_left = 477.0
-margin_top = 310.0
-margin_right = 558.0
-margin_bottom = 350.0
-theme = SubResource( 4 )
-text = "Controls"
-
-[node name="Button4" type="Button" parent="CanvasLayer/Control"]
-margin_left = 476.0
-margin_top = 364.0
-margin_right = 557.0
-margin_bottom = 404.0
-theme = SubResource( 4 )
-text = "Credits"
-
 [node name="Button2" type="Button" parent="CanvasLayer/Control"]
-margin_left = 476.0
-margin_top = 421.0
-margin_right = 559.0
-margin_bottom = 461.0
+margin_left = 465.0
+margin_top = 467.0
+margin_right = 572.0
+margin_bottom = 524.0
 theme = SubResource( 4 )
-text = "Exit"
+text = "Back"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
-margin_left = 471.0
-margin_top = 250.0
-margin_right = 563.0
-margin_bottom = 290.0
+margin_left = 476.0
+margin_top = 383.0
+margin_right = 569.0
+margin_bottom = 442.0
 theme = SubResource( 2 )
 text = "Start"
 
-[connection signal="pressed" from="CanvasLayer/Control/Button3" to="." method="_on_Button3_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Button4" to="." method="_on_Button4_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="button_up" from="CanvasLayer/Control/Button" to="." method="_on_Button_button_up"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_Button_pressed"]

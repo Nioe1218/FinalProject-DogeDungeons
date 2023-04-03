@@ -4,11 +4,14 @@ enum {UP,DOWN}
 var current_weapon:Node2D
 onready var weapons:Node2D = get_node("Weapon")
 
+
+
+
 func _ready():
 	current_weapon = weapons.get_child(0)
 	_restore_previous_state()
 	
-func _restore_previous_state()->void:
+func _restore_previous_state()->void:#save the hp data for next level
 	self.hp = Savedata.hp
 
 func _process(_delta:float)-> void:# player will face to the mouse position
@@ -21,6 +24,7 @@ func _process(_delta:float)-> void:# player will face to the mouse position
 		
 	current_weapon.move(mouse_direction)
 		
+
 
 	
 func get_input()-> void:#player input
@@ -49,7 +53,7 @@ func switch_camrea()->void:
 	main_scene_camera.current = true
 	get_node("Camera2D").current = false
 	
-func _switch_weapon(direction: int) -> void:
+func _switch_weapon(direction: int) -> void:#change the weapon
 	var index: int = current_weapon.get_index()
 	if direction == UP:
 		index -= 1

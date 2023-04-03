@@ -4,7 +4,7 @@ onready var collision_shape: CollisionShape2D = get_node("CollisionShape2D")
 onready var tween: Tween = get_node("Tween")
 
 
-func _on_HealthPotion_body_entered(player:KinematicBody2D):
+func _on_HealthPotion_body_entered(player:KinematicBody2D):#when play get  the healthpotion +2hp and healthpotion will fade away
 	collision_shape.set_deferred("disabled", true)
 	player.hp += 2
 	Savedata.hp += 2

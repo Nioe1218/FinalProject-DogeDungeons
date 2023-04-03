@@ -36,7 +36,7 @@ func _enter_state(_previous_state:int,new_state:int)->void:#player animation
 		states.move:
 			animation_player.play("run")
 		states.hurt:
-			animation_player.play("hurt")
+			animation_player.play("hurt")#when palyer get hurt cancel attack will play
 			parent.cancel_attack()
 		states.dead:
 			animation_player.play("dead")

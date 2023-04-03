@@ -31,13 +31,13 @@ func _spawn_rooms():
 	var bigroom_spawned:bool = false
 	for i in num_levels:
 		var room:Node2D
-		if i == 0:
+		if i == 0:#spawn the spawnroom first
 			room = SPAWN_ROOMS[randi()% SPAWN_ROOMS.size()].instance()
-			player.position = room.get_node("PlayerSpawnPosition").position
+			player.position = room.get_node("PlayerSpawnPosition").position#move the player to the spawn position
 		else:
-			if i ==num_levels -1:
+			if i ==num_levels -1:# end room will spawn at the end
 				room = END_ROOM[randi()%END_ROOM.size()].instance()
-			else:
+			else:#will spawn bigroom every time
 				if (randi() % 3 == 0 and not bigroom_spawned) or (i == num_levels - 2 and not bigroom_spawned):
 						room = BIG_ROOMS[randi() % BIG_ROOMS.size()].instance()
 						bigroom_spawned = true
@@ -49,7 +49,7 @@ func _spawn_rooms():
 			var exit_tile_pos:Vector2=previous_room_tilemap.world_to_map(previous_room_door.position)+Vector2.UP*1
 			
 			var corridor_height:int = randi ()%5+3
-			for y in corridor_height:
+			for y in corridor_height:#connect each room
 				previous_room_tilemap.set_cellv(exit_tile_pos+Vector2(-3,-y),LEFT_WALL_TILE_INDEX)
 				previous_room_tilemap.set_cellv(exit_tile_pos+Vector2(-2,-y),FLOOR_TILE_INDEX)
 				previous_room_tilemap.set_cellv(exit_tile_pos+Vector2(-1,-y),FLOOR_TILE_INDEX)
